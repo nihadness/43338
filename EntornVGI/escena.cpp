@@ -94,7 +94,7 @@ void dibuixa(char obj)
 		glColor3f(1.0, 0.0, 1.0);
 		glPushMatrix();
 			// Above the Foot...
-			glTranslatef(0.0f, 0.0f, 5.0f);
+			glTranslatef(0.0f, 0.0f, 2.5f);
 			glutSolidCone(2.0f, 12.5f, 10, 10);
 		glPopMatrix();
 		// done...
@@ -116,8 +116,9 @@ void dibuixa(char obj)
 			// Arm
 			glColor3f(0.5, 0.5, 0.5);
 			glPushMatrix();
-				// Rotation?
-				glutSolidCylinder(0.5f, 15.0f, 10, 10);
+				// Rotation...
+				glRotatef(90, 1.0f, 0.0f, 0.0f);
+				glutSolidCylinder(0.5f, 15.0f, 5, 5);
 			glPopMatrix();
 
 			// The small part
@@ -136,9 +137,9 @@ void dibuixa(char obj)
 				// Fingers
 				// Upper Finger
 				glPushMatrix();
-					// Length - intersection 
-					glTranslatef(0.0f, -0.25f, -0.25f);
-					// Use theta/2 here! 
+					// Rotation before translation
+					glRotatef(45, 1.0f, 0.0f, 0.0f);
+					glTranslatef(0.0f, 0.0f, 1.75f);
 					
 					// long cube
 					glPushMatrix();
@@ -151,15 +152,31 @@ void dibuixa(char obj)
 					glPushMatrix();
 						glColor3f(0.0, 0.5, 0.0);
 						// Translation of small cube
-						glTranslatef(0.0f, -1.50f, 3.5f);
+						glTranslatef(0.0f, -0.75f, 1.75f);
 						glScalef(1.0f, 2.0f, 0.5f);
 						glutSolidCube(1.0);
 					glPopMatrix();
-
 				glPopMatrix();
 				// End of Upper Finger
 
 				// Lower Finger
+				glPushMatrix();
+					glRotatef(45, 1.0f, 0.0f, 0.0f);
+					glTranslatef(0.0f, -1.5f, 0.0f);
+					glPushMatrix();
+						glColor3f(0.0, 0.0, 0.5);
+						glScalef(1.0f, 4.0f, 0.5f);
+						glutSolidCube(1.0);
+					glPopMatrix();
+
+					glPushMatrix();
+						glColor3f(0.0, 0.0, 0.5);
+						glTranslatef(0.0f, -1.75f, 0.75f);
+						glScalef(1.0f, 0.5f, 2.0f);
+						glutSolidCube(1.0);
+					glPopMatrix();
+				glPopMatrix();
+				// End of low finger
 
 			glPopMatrix();
 			// End of small part
