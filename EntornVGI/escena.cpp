@@ -100,10 +100,9 @@ void dibuixa(char obj)
 		// done...
 
 		// THE BIG PART
-		glPushMatrix();
-
+		glPushMatrix(); 
 			glTranslatef(0.0f, 0.0f, 15.0f);
-			// Rotation here!
+			glRotatef(45, -1.0f, 0.0f, 0.0f);
 
 			// Elbow
 			glColor3f(1.0, 0.0, 0.0);
@@ -125,6 +124,7 @@ void dibuixa(char obj)
 			glPushMatrix();
 				glTranslatef(0.0f, -15.0f, 0.0f);
 				// Rotation of small part here!
+				glRotatef(90, 1.0f, 0.0f, 0.0f);
 
 				// Wrist
 				glColor3f(1.0, 0.0, 0.0);
@@ -137,8 +137,8 @@ void dibuixa(char obj)
 				// Fingers
 				// Upper Finger
 				glPushMatrix();
-					// Rotation before translation
-					glRotatef(45, 1.0f, 0.0f, 0.0f);
+					// Rotation should be before translation, why?
+					glRotatef(10, 1.0f, 0.0f, 0.0f);
 					glTranslatef(0.0f, 0.0f, 1.75f);
 					
 					// long cube
@@ -161,7 +161,7 @@ void dibuixa(char obj)
 
 				// Lower Finger
 				glPushMatrix();
-					glRotatef(45, 1.0f, 0.0f, 0.0f);
+					glRotatef(10, -1.0f, 0.0f, 0.0f);
 					glTranslatef(0.0f, -1.5f, 0.0f);
 					glPushMatrix();
 						glColor3f(0.0, 0.0, 0.5);
