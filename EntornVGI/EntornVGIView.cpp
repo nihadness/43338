@@ -85,7 +85,7 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 	ON_COMMAND(ID_OBJECTE_CUB, &CEntornVGIView::OnObjecteCub)
 	ON_UPDATE_COMMAND_UI(ID_OBJECTE_CUB, &CEntornVGIView::OnUpdateObjecteCub)
 	ON_COMMAND(ID_OBJECT_TEST, &CEntornVGIView::OnObjectTest)
-	ON_UPDATE_COMMAND_UI(ID_OBJECTE_CUB, &CEntornVGIView::OnUpdateObjectTest)
+	ON_UPDATE_COMMAND_UI(ID_OBJECT_TEST, &CEntornVGIView::OnUpdateObjectTest)
 	ON_COMMAND(ID_OBJECTE_ESFERA, &CEntornVGIView::OnObjecteEsfera)
 	ON_UPDATE_COMMAND_UI(ID_OBJECTE_ESFERA, &CEntornVGIView::OnUpdateObjecteEsfera)
 	ON_COMMAND(ID_OBJECTE_TETERA, &CEntornVGIView::OnObjecteTetera)
@@ -147,8 +147,6 @@ BEGIN_MESSAGE_MAP(CEntornVGIView, CView)
 	ON_UPDATE_COMMAND_UI(ID_VISTA_SATELIT, &CEntornVGIView::OnUpdateVistaSatelit)
 	ON_COMMAND(ID_PROJECCIOORTOGRAFICA, &CEntornVGIView::OnProjeccioortografica)
 	ON_UPDATE_COMMAND_UI(ID_PROJECCIOORTOGRAFICA, &CEntornVGIView::OnUpdateProjeccioortografica)
-	ON_COMMAND(ID_OBJECT_TEST, &CEntornVGIView::OnObjectTest)
-	ON_UPDATE_COMMAND_UI(ID_OBJECT_TEST, &CEntornVGIView::OnUpdateObjectTest)
 	END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -3393,7 +3391,6 @@ void CEntornVGIView::OnObjectTest()
 
 void CEntornVGIView::OnUpdateObjectTest(CCmdUI *pCmdUI)
 {
-	// TODO: Agregue aquí su código de controlador de IU para actualización de comandos
 	if (objecte == TEST) pCmdUI->SetCheck(1);
 	else pCmdUI->SetCheck(0);
 }

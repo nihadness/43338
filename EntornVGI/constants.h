@@ -26,7 +26,7 @@
 #define CAMIO 'm'
 #define CILINDER 'y'
 #define CUBE 'c'
-#define TEST 'TT'
+#define TEST 'M'
 #define SPHERE 'e'
 #define O_FRACTAL 'f'
 #define HIDROAVIO 'H'
