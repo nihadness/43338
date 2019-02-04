@@ -1,7 +1,7 @@
-ipch*
-Release*
-Debug*
-/*.sdf
-/*.suo
-/*/*.aps
-/*.opensdf
+/ipch
+/Debug/*.exp
+/Debug/*.ilk
+/Debug/*.lib
+/Debug/*.pdb
+/EntornVGI/Debug/*
+

@@ -215,10 +215,10 @@ void Projeccio_Orto(int minx, int miny, GLsizei w, GLsizei h, int prj)
 	glLoadIdentity(); // GL_PROJECTION inicialization
 	float ratio = float(w) / float(h);
 	if (ratio > 1) {
-		glOrtho(-3.0*ratio, 3.0*ratio, -3.0, 3.0, -3.0, 3.0);  // Projection Matrix and Volume of Visualization
+		glOrtho(-10.0*ratio, 10.0*ratio, -10.0, 10.0, -10.0, 10.0);  // Projection Matrix and Volume of Visualization
 	}
 	else {
-		glOrtho(-3.0, 3.0, -3.0 / ratio, 3.0 / ratio, -3.0, 3.0);  // Projection Matrix and Volume of Visualization
+		glOrtho(-100.0, 100.0, -100.0 / ratio, 100.0 / ratio, -300.0, 300.0);  // Projection Matrix and Volume of Visualization
 	}
 	glMatrixMode(GL_MODELVIEW); // GL_MODELVIEW Matrix switch on
 	glLoadIdentity(); // GL_MODELVIEW inicialization
