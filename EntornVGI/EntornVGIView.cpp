@@ -1151,20 +1151,23 @@ void CEntornVGIView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (objecte == TEST) {
 		Move_Test(nChar, nRepCnt);
 	}
-	if ((!pan) && (!transf) && (!navega))
-	{
-		if (!sw_color) Teclat_ColorFons(nChar, nRepCnt);
-		else Teclat_ColorObjecte(nChar, nRepCnt);
-	}
-	else {	if (transf)
-			{	if (rota) Teclat_TransRota(nChar, nRepCnt);
-				  else if (trasl) Teclat_TransTraslada(nChar, nRepCnt);
-					else if (escal) Teclat_TransEscala(nChar, nRepCnt);
+	else{
+		if ((!pan) && (!transf) && (!navega))
+		{
+			if (!sw_color) Teclat_ColorFons(nChar, nRepCnt);
+			else Teclat_ColorObjecte(nChar, nRepCnt);
+		}
+		else {
+			if (transf)
+			{
+				if (rota) Teclat_TransRota(nChar, nRepCnt);
+				else if (trasl) Teclat_TransTraslada(nChar, nRepCnt);
+				else if (escal) Teclat_TransEscala(nChar, nRepCnt);
 			}
 			if (pan) Teclat_Pan(nChar, nRepCnt);
-			 else if (navega) Teclat_Navega(nChar, nRepCnt);
+			else if (navega) Teclat_Navega(nChar, nRepCnt);
 		}
-
+	}
 // OnPaint() call to redraw the scene
 	InvalidateRect(NULL, false);
 
@@ -1181,8 +1184,20 @@ void CEntornVGIView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt)
 {
-	if (nChar == VK_SPACE){
-		objecte = TRUCK;
+	switch (nChar)
+	{
+	case VK_UP:
+		angles[0] -= 5;
+		break;
+	case VK_DOWN:
+		angles[0] += 5;
+		break;
+	case VK_LEFT:
+		angles[1] -= 5;
+		break;
+	case VK_RIGHT:
+		angles[1] += 5;
+		break;
 	}
 
 }
