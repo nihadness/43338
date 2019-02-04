@@ -1186,18 +1186,47 @@ void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt)
 {
 	switch (nChar)
 	{
-	case VK_UP:
-		angles[0] -= 5;
-		break;
-	case VK_DOWN:
-		angles[0] += 5;
-		break;
-	case VK_LEFT:
-		angles[1] -= 5;
-		break;
-	case VK_RIGHT:
-		angles[1] += 5;
-		break;
+		// Rotate Big Part
+		case VK_UP:
+			angles[0] -= 5;
+			break;
+		case VK_DOWN:
+			angles[0] += 5;
+			break;
+		case VK_LEFT:
+			angles[1] -= 5;
+			break;
+		case VK_RIGHT:
+			angles[1] += 5;
+			break;
+	
+		// Rotate Small Part
+		case VK_NUMPAD2:
+			angles[2] += 5;
+			break;
+		case VK_NUMPAD8:
+			angles[2] -= 5;
+			break;
+		case VK_NUMPAD1:
+			angles[3] += 5;
+			break;
+		case VK_NUMPAD3:
+			angles[3] -= 5;
+			break;
+		case VK_NUMPAD4:
+			angles[4] += 5;
+			break;
+		case VK_NUMPAD6:
+			angles[4] -= 5;
+			break;
+
+		// Angle of the Clamp...
+		case VK_F1:
+			angles[5] += 5;
+			break;
+		case VK_F2:
+			angles[5] -= 5;
+			break;
 	}
 
 }

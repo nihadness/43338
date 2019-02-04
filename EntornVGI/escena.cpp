@@ -87,6 +87,12 @@ void dibuixa(char obj,float angles[6])
 		betaX = angles[2];
 		betaY = angles[3];
 		betaZ = angles[4];
+		if (angles[5] >= 90){
+			angles[5] = 90;
+		}
+		else if (angles[5] <= -115){
+			angles[5] = -115;
+		}
 		theta = angles[5];
 
 		// Foot
@@ -147,7 +153,7 @@ void dibuixa(char obj,float angles[6])
 				// Upper Finger
 				glPushMatrix();
 					// Rotation should be before translation, why?
-					glRotatef(theta/2, -1.0f, 0.0f, 0.0f);
+					glRotatef(45+theta/2, -1.0f, 0.0f, 0.0f);
 					glTranslatef(0.0f, 0.0f, 1.75f);
 					
 					// long cube
@@ -170,7 +176,7 @@ void dibuixa(char obj,float angles[6])
 
 				// Lower Finger
 				glPushMatrix();
-					glRotatef(theta/2, 1.0f, 0.0f, 0.0f);
+					glRotatef(45+theta/2, 1.0f, 0.0f, 0.0f);
 					glTranslatef(0.0f, -1.5f, 0.0f);
 					glPushMatrix();
 						glColor3f(0.0, 0.0, 0.5);
