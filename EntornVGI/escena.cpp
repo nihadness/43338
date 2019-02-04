@@ -13,7 +13,7 @@
 GLuint texturID[NUM_MAX_TEXTURES] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
 // dibuixa_EscenaGL: To draw a scene with OpenGL commands
-void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur)
+void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, float angles[6])
 {
 	float altfar = 0;
 
@@ -47,7 +47,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 	default:
 		// Definition of reflexion properties (emission, ambient, diffuse, specular) of materials.
 		SeleccionaColor(ref_mat, sw_mat, col_object);
-		dibuixa(objecte);
+		dibuixa(objecte, angles);
 		break;
 	}
 
@@ -58,7 +58,7 @@ void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat
 
 
 // dibuixa: This functions draws simple objects defined in GLUT library (glutSolid*()), accrding to obj parameter.
-void dibuixa(char obj)
+void dibuixa(char obj,float angles[6])
 {
 	switch(obj)
 	{
@@ -82,6 +82,12 @@ void dibuixa(char obj)
 		
 		// Define Angles
 		GLint alphaX, alphaZ, betaX, betaY, betaZ, theta;
+		alphaX = angles[0];
+		alphaZ = angles[1];
+		betaX = angles[2];
+		betaY = angles[3];
+		betaZ = angles[4];
+		theta = angles[5];
 
 		// Foot
 		glColor3f(0.0, 0.0, 1.0);
@@ -102,7 +108,8 @@ void dibuixa(char obj)
 		// THE BIG PART
 		glPushMatrix(); 
 			glTranslatef(0.0f, 0.0f, 15.0f);
-			glRotatef(45, -1.0f, 0.0f, 0.0f);
+			glRotatef(alphaX, 1.0f, 0.0f, 0.0f);
+			glRotatef(alphaZ, 0.0f, 0.0f, 1.0f);
 
 			// Elbow
 			glColor3f(1.0, 0.0, 0.0);
@@ -123,8 +130,10 @@ void dibuixa(char obj)
 			// The small part
 			glPushMatrix();
 				glTranslatef(0.0f, -15.0f, 0.0f);
-				// Rotation of small part here!
-				glRotatef(90, 1.0f, 0.0f, 0.0f);
+				// Rotation of small part here!	
+				glRotatef(betaX, 1.0f, 0.0f, 0.0f);
+				glRotatef(betaY, 0.0f, 1.0f, 0.0f);
+				glRotatef(betaZ, 0.0f, 0.0f, 1.0f);
 
 				// Wrist
 				glColor3f(1.0, 0.0, 0.0);
@@ -138,7 +147,7 @@ void dibuixa(char obj)
 				// Upper Finger
 				glPushMatrix();
 					// Rotation should be before translation, why?
-					glRotatef(10, 1.0f, 0.0f, 0.0f);
+					glRotatef(theta/2, -1.0f, 0.0f, 0.0f);
 					glTranslatef(0.0f, 0.0f, 1.75f);
 					
 					// long cube
@@ -161,7 +170,7 @@ void dibuixa(char obj)
 
 				// Lower Finger
 				glPushMatrix();
-					glRotatef(10, -1.0f, 0.0f, 0.0f);
+					glRotatef(theta/2, 1.0f, 0.0f, 0.0f);
 					glTranslatef(0.0f, -1.5f, 0.0f);
 					glPushMatrix();
 						glColor3f(0.0, 0.0, 0.5);

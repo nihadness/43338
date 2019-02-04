@@ -158,6 +158,10 @@ CEntornVGIView::CEntornVGIView()
 //	int i = 0;
 
 //------GMS Environment: Inicialization of global variables of CEntornVGIView
+	for (int i = 0; i < 6; i++)
+	{
+		angles[i] = 0.0f;
+	}
 
 // GMS Environment: Variables de control per Menú Veure->Pantalla Completa 
 	fullscreen = false;
@@ -775,7 +779,7 @@ void CEntornVGIView::configura_Escena() {
 void CEntornVGIView::dibuixa_Escena() {
 
 //	Drawing of scene geometry with GL commands.
-	dibuixa_EscenaGL(objecte, col_obj, true, sw_material, textura);
+	dibuixa_EscenaGL(objecte, col_obj, true, sw_material, textura, angles);
 }
 
 // Barra_Estat: Updates the Status Bar of the applications with the values of R,A,B,PVx,PVy,PVz and others.
@@ -1144,7 +1148,9 @@ void CEntornVGIView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const float incr = 0.025f;
 	float modul = 0;
 	GLfloat vdir[3] = { 0, 0, 0 };
-
+	if (objecte == TEST) {
+		Move_Test(nChar, nRepCnt);
+	}
 	if ((!pan) && (!transf) && (!navega))
 	{
 		if (!sw_color) Teclat_ColorFons(nChar, nRepCnt);
@@ -1171,6 +1177,14 @@ void CEntornVGIView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 // TODO: Add your message handler code here and/or call default
 
 	CView::OnKeyUp(nChar, nRepCnt, nFlags);
+}
+
+void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt)
+{
+	if (nChar == VK_SPACE){
+		objecte = TRUCK;
+	}
+
 }
 
 

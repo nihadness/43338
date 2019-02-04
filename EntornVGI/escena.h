@@ -11,10 +11,10 @@
 /*                            Scenes Functions                               */
 /* ------------------------------------------------------------------------- */
 // GMS Environment: dibuixa_EscenaGL -> Draws the GL scene
-void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur);
+void dibuixa_EscenaGL(char objecte, CColor col_object, bool ref_mat, bool sw_mat[4], bool textur, float angles[6]);
 
 // GMS Environment: dibuixa -> Function that draws simple GLUT or GLU objects according the value of obj variable
-void dibuixa(char obj);
+void dibuixa(char obj, float angles[6]);
 
 // GMS Environment: Truck
 void truck(bool textu,GLuint VTextu[NUM_MAX_TEXTURES]);

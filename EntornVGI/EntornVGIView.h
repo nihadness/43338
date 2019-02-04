@@ -149,7 +149,7 @@ public:
 	CString nom;	// Nom de fitxer.
 	CString buffer; // Buffer que magatzema string caracters corresponent a variables float a printar en Status Bar (funció Barra_Estat).
 //--------------VGI Environment: Fi De Variables globals de CEntornVGIView
-
+	GLfloat angles[6];
 // Operaciones
 public:
 
@@ -197,6 +197,7 @@ public:
 	void CEntornVGIView::Teclat_TransEscala(UINT nChar, UINT nRepCnt);
 	void CEntornVGIView::Teclat_TransRota(UINT nChar, UINT nRepCnt);
 	void CEntornVGIView::Teclat_TransTraslada(UINT nChar, UINT nRepCnt);
+	void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt);
 
 	CMFCStatusBar& GetStatusBar() const
 	{
