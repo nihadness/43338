@@ -1193,11 +1193,22 @@ void CEntornVGIView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt)
 {
 	if (anima){
-		anima = false;
+		switch (nChar)
+		{
+			case VK_PAUSE:
+				anima = false;
+				KillTimer(WM_TIMER);
+				break;
+			case VK_F5:
+				anima = false;
+				KillTimer(WM_TIMER);
+				break;
+		}
 	}
-	switch (nChar)
-	{
-		// Rotate Big Part
+	else{
+		switch (nChar)
+		{
+			// Rotate Big Part
 		case VK_UP:
 			angles[0] -= 5;
 			break;
@@ -1210,8 +1221,8 @@ void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt)
 		case VK_RIGHT:
 			angles[1] += 5;
 			break;
-	
-		// Rotate Small Part
+
+			// Rotate Small Part
 		case VK_NUMPAD2:
 			angles[2] += 5;
 			break;
@@ -1231,17 +1242,17 @@ void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt)
 			angles[4] -= 5;
 			break;
 
-		// Angle of the Clamp...
+			// Angle of the Clamp...
 		case VK_F1:
 			angles[5] += 5;
 			break;
 		case VK_F2:
 			angles[5] -= 5;
 			break;
-		
+
 		case VK_INSERT:
 			// Make sure the new values are different
-			
+
 			for (int i = 0; i < 6; i++)
 			{
 				if (is_first && angles[i] != v_2[i])
@@ -1252,7 +1263,7 @@ void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt)
 				{
 					is_different = true;
 				}
-				
+
 			}
 			if (!is_different)
 			{
@@ -1279,12 +1290,16 @@ void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt)
 
 		case VK_F5:
 			anima = true;
+			loop = 0;
+			direction = 1;
 			SetTimer(WM_TIMER, 240, NULL);
 			break;
 
 		case VK_PAUSE:
-			KillTimer(WM_TIMER);
+			anima = true;
+			SetTimer(WM_TIMER, 240, NULL);
 			break;
+		}
 	}
 
 }
@@ -2222,7 +2237,7 @@ void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 			angles[i] = v_1[i] + (loop*(v_2[i] - v_1[i]) / NFRAMES);
 		}
 		loop += direction;
-		if (loop > NFRAMES){
+		if (loop >= NFRAMES){
 			direction = -1;
 		}
 		else if (loop <= 0){
