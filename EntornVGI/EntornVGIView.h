@@ -150,6 +150,15 @@ public:
 	CString buffer; // Buffer que magatzema string caracters corresponent a variables float a printar en Status Bar (funció Barra_Estat).
 //--------------VGI Environment: Fi De Variables globals de CEntornVGIView
 	GLfloat angles[6];
+	GLfloat v_1[6];
+	GLfloat v_2[6];
+	bool is_first;
+	bool is_different; 
+	int NFRAMES;
+	int loop;
+	int direction;
+
+
 // Operaciones
 public:
 

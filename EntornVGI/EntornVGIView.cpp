@@ -161,7 +161,15 @@ CEntornVGIView::CEntornVGIView()
 	for (int i = 0; i < 6; i++)
 	{
 		angles[i] = 0.0f;
+		v_1[i] = 0.0f;
+		v_2[i] = 0.0f;
 	}
+
+	is_different = true;
+	is_first = true;
+	NFRAMES = 10;
+	loop = 0;
+	direction = 1;
 
 // GMS Environment: Variables de control per Menú Veure->Pantalla Completa 
 	fullscreen = false;
@@ -1184,6 +1192,9 @@ void CEntornVGIView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt)
 {
+	if (anima){
+		anima = false;
+	}
 	switch (nChar)
 	{
 		// Rotate Big Part
@@ -1226,6 +1237,53 @@ void CEntornVGIView::Move_Test(UINT nChar, UINT nRepCnt)
 			break;
 		case VK_F2:
 			angles[5] -= 5;
+			break;
+		
+		case VK_INSERT:
+			// Make sure the new values are different
+			
+			for (int i = 0; i < 6; i++)
+			{
+				if (is_first && angles[i] != v_2[i])
+				{
+					is_different = true;
+				}
+				else if (!is_first && angles[i] != v_1[i])
+				{
+					is_different = true;
+				}
+				
+			}
+			if (!is_different)
+			{
+				break;
+			}
+
+			// New capture, insert it!
+			if (is_first) {
+				for (int i = 0; i < 6; i++) {
+					v_1[i] = angles[i];
+				}
+				is_first = false;
+			}
+			else
+			{
+				for (int i = 0; i < 6; i++) {
+					v_2[i] = angles[i];
+				}
+				is_first = true;
+			}
+
+			is_different = false;
+			break;
+
+		case VK_F5:
+			anima = true;
+			SetTimer(WM_TIMER, 240, NULL);
+			break;
+
+		case VK_PAUSE:
+			KillTimer(WM_TIMER);
 			break;
 	}
 
@@ -2157,9 +2215,19 @@ BOOL CEntornVGIView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 void CEntornVGIView::OnTimer(UINT_PTR nIDEvent)
 {
 // TODO: Add your message handler code here and/or call default
-	if (anima)	{
+	if (anima && objecte==TEST)	{
 		// Message handler of animation when n ms. have occurred
 
+		for (int i = 0; i < 6; i++) {
+			angles[i] = v_1[i] + (loop*(v_2[i] - v_1[i]) / NFRAMES);
+		}
+		loop += direction;
+		if (loop > NFRAMES){
+			direction = -1;
+		}
+		else if (loop <= 0){
+			direction = 1;
+		}
 		// OnPaint() call to redraw the scene
 		InvalidateRect(NULL, false);
 		}
